@@ -57,6 +57,72 @@ class CheckVatResponse
      */
     protected $address;
     /**
+     * @var string The registered street part of address of a validated company (optional)
+     */
+    protected $street;
+    /**
+     * @var string The registered postal code part of address of a validated company (optional)
+     */
+    protected $postalCode;
+    /**
+     * @var string The registered city part of address of a validated company (optional)
+     */
+    protected $city;
+
+    /**
+     * @return mixed
+     */
+    public function getStreet()
+    {
+        return $this->street;
+    }
+
+    /**
+     * @param self
+     */
+    public function setStreet($street): self
+    {
+        $this->street = $street;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPostalCode()
+    {
+        return $this->postalCode;
+    }
+
+    /**
+     * @param self
+     */
+    public function setPostalCode($postalCode): self
+    {
+        $this->postalCode = $postalCode;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCity()
+    {
+        return $this->city;
+    }
+
+    /**
+     * @param self
+     */
+    public function setCity($city): self
+    {
+        $this->city = $city;
+
+        return $this;
+    }
+    /**
      * @var string The request Identifier (optional)
      */
     protected $identifier;
@@ -262,6 +328,9 @@ class CheckVatResponse
             ->setName($row->traderName ?? '---')
             ->setAddress($row->traderAddress ?? '---')
             ->setIdentifier($row->requestIdentifier ?? '')
+            ->setStreet($row->traderStreet ?? '---')
+            ->setPostalCode($row->traderPostcode ?? '---')
+            ->setCity($row->traderCity ?? '---')
         ;
     }
 
@@ -279,6 +348,9 @@ class CheckVatResponse
             'valid'       => $this->isValid(),
             'name'        => $this->getName(),
             'address'     => $this->getAddress(),
+            'street'      => $this->getStreet(),
+            'postalCode'  => $this->getPostalCode(),
+            'city'        => $this->getCity(),
             'identifier'  => $this->getIdentifier(),
         ];
     }
